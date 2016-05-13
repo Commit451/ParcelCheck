@@ -5,7 +5,7 @@ import com.commit451.parcelcheck.ParcelCheckPackageTest;
 /**
  * Test which will always fail due to models being broken
  */
-public class BrokenParcelTest extends ParcelCheckPackageTest {
+public class BrokenParcelPackageTest extends ParcelCheckPackageTest {
 
     @Override
     public String[] getModelPackageNames() {

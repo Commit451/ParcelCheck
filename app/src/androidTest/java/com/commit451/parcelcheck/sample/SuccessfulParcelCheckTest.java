@@ -6,10 +6,12 @@ import com.commit451.parcelcheck.sample.otherModels.Dog;
 /**
  * Checks to see if dog is parcelable. Spoiler alert, it is
  */
-public class DogParcelCheckTest extends ParcelCheckTest {
+public class SuccessfulParcelCheckTest extends ParcelCheckTest {
 
     @Override
-    public Class getClassToCheck() {
-        return Dog.class;
+    public Class[] getClassesToCheck() {
+        return new Class[] {
+                Dog.class
+        };
     }
 }

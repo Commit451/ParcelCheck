@@ -156,20 +156,40 @@ public class ObjectHelper {
 
     public static boolean checkFieldsEqual(String fieldName, Object first, Object second, boolean checkingSuccess) throws IllegalAccessException {
         List<Field> fields = getClassFields(first.getClass());
-        for (Field field : fields) {
-            field.setAccessible(true);
-            if (Modifier.isTransient(field.getModifiers()) || Modifier.isStatic(field.getModifiers())) {
-                continue;
+        if (!fields.isEmpty() && !containsOnlyTransientAndStaticFields(fields)) {
+            for (Field field : fields) {
+                field.setAccessible(true);
+                if (Modifier.isTransient(field.getModifiers()) || Modifier.isStatic(field.getModifiers())) {
+                    continue;
+                }
+                Object firstField = field.get(first);
+                Object secondField = field.get(second);
+                boolean equals = checkIfEquals(fieldName + " > " + field.getName(), firstField, secondField, checkingSuccess);
+                if (checkingSuccess) {
+                    Assert.assertTrue("Objects \"" + firstField + "\" and \"" + secondField + "\" of type \"" + field.getType().getSimpleName() + "\" in \"" + fieldName + " > " + field.getName() + "\" do not match", equals);
+                }
+                return equals;
             }
-            Object firstField = field.get(first);
-            Object secondField = field.get(second);
-            boolean equals = checkIfEquals(fieldName + " > " + field.getName(), firstField, secondField, checkingSuccess);
-            if (checkingSuccess) {
-                Assert.assertTrue("Objects \"" + firstField + "\" and \"" + secondField + "\" of type \"" + field.getType().getSimpleName() + "\" in \"" + fieldName + " > " + field.getName() + "\" do not match", equals);
-            }
-            return equals;
+            return false;
         }
-        return false;
+        //No fields to check so I guess we are good?
+        return true;
+    }
+
+    /**
+     * Only contains transient or static fields, which is the case for a model that is empty, but
+     * says it "implements Parcelable"
+     * @param fields the list of fields
+     * @return true if contains only transient and static fields, false otherwise
+     */
+    private static boolean containsOnlyTransientAndStaticFields(List<Field> fields) {
+        boolean containsNormalField = false;
+        for (Field field : fields) {
+            if (!Modifier.isTransient(field.getModifiers()) && !Modifier.isStatic(field.getModifiers())) {
+                containsNormalField = true;
+            }
+        }
+        return !containsNormalField;
     }
 
     private static boolean checkIfEquals(String fieldName, Object first, Object second, boolean checkingSuccess) throws IllegalAccessException {
