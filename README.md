@@ -33,14 +33,15 @@ public class AllModelsTest extends ParcelCheckPackageTest {
     }
 }
 ```
-or alternatively, to test a single model:
+or alternatively, to test individual models:
 ```java
-public class DogParcelCheckTest extends ParcelCheckTest {
+public class DogAndPhoneParcelCheckTest extends ParcelCheckTest {
 
     @Override
     public Class[] getClassesToCheck() {
         return new Class[] {
-                Dog.class
+                Dog.class,
+                Phone.class
         };
     }
 }
