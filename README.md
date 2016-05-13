@@ -1,6 +1,6 @@
 # ParcelCheck
 Checks models within specified packages to make sure they are properly parcelable
-Special thanks to @alexkgwyn for creating the basis for this library.
+Special thanks to [@alexkgwyn](https://github.com/alexkgwyn) for creating most of this library. 
 
 [![Build Status](https://travis-ci.org/Commit451/ParcelCheck.svg?branch=master)](https://travis-ci.org/Commit451/ParcelCheck)
 [![](https://jitpack.io/v/Commit451/ParcelCheck.svg)](https://jitpack.io/#Commit451/ParcelCheck)
