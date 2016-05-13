@@ -4,10 +4,25 @@ Checks models within specified packages to make sure they are properly parcelabl
 [![Build Status](https://travis-ci.org/Commit451/ParcelCheck.svg?branch=master)](https://travis-ci.org/Commit451/ParcelCheck)
 [![](https://jitpack.io/v/Commit451/ParcelCheck.svg)](https://jitpack.io/#Commit451/ParcelCheck)
 
+# Dependency
+```gradle
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
+}
+```
+and within your application `build.gradle`
+
+```gradle
+dependencies {
+    androidTestCompile 'com.github.Commit451:ParcelCheck:1.0.0'
+}
+```
 # Usage
-Setup is simple, just create a class within your application's `androidTest` directory and make sure the newly created test extends ParcelCheckTest
+Setup is simple, just create a class within your application's `androidTest` directory and make sure the newly created test extends `ParcelCheckPackageTest`. To test all models within a package:
 ```java
-public class AllModelsTest extends ParcelCheckTest {
+public class AllModelsTest extends ParcelCheckPackageTest {
 
     @Override
     public String[] getModelPackageNames() {
@@ -15,6 +30,16 @@ public class AllModelsTest extends ParcelCheckTest {
                 "com.commit451.parcelcheck.sample.models",
                 "com.commit451.parcelcheck.sample.otherModels"
         };
+    }
+}
+```
+or alternatively, to test a single model:
+```java
+public class DogParcelCheckTest extends ParcelCheckTest {
+
+    @Override
+    public Class getClassToCheck() {
+        return Dog.class;
     }
 }
 ```
