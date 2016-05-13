@@ -13,9 +13,7 @@ android:
     - extra-android-m2repository
 
     # Emulators
-    - sys-img-armeabi-v7a-android-21
     - sys-img-armeabi-v7a-android-19
-    - sys-img-armeabi-v7a-android-15
 
 env:
   global:
