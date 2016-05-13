@@ -14,6 +14,9 @@ android:
     - sys-img-armeabi-v7a-android-21
 
 env:
+  global:
+    # minutes (2 by default)
+    - ADB_INSTALL_TIMEOUT=8
   matrix:
     - ANDROID_TARGET=android-21  ANDROID_ABI=armeabi-v7a
 
