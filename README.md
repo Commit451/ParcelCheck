@@ -16,7 +16,7 @@ and within your application `build.gradle`
 
 ```gradle
 dependencies {
-    androidTestCompile 'com.github.Commit451:ParcelCheck:1.0.0'
+    androidTestCompile 'com.github.Commit451:ParcelCheck:1.0.1'
 }
 ```
 # Usage
@@ -38,8 +38,10 @@ or alternatively, to test a single model:
 public class DogParcelCheckTest extends ParcelCheckTest {
 
     @Override
-    public Class getClassToCheck() {
-        return Dog.class;
+    public Class[] getClassesToCheck() {
+        return new Class[] {
+                Dog.class
+        };
     }
 }
 ```
