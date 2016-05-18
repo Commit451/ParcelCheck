@@ -26,7 +26,9 @@ public class ObjectHelper {
 
     public static final String TEST_STRING = "This is a test string";
     public static final int TEST_INT = 42;
+    public static final long TEST_LONG = 42L;
     public static final float TEST_FLOAT = 33.333f;
+    public static final double TEST_DOUBLE = 33.333;
     public static final boolean TEST_BOOL = true;
     public static final char TEST_CHAR = 'q';
 
@@ -62,10 +64,14 @@ public class ObjectHelper {
     private static Object getObjectForClass(ObjectStack objectStack, Class clazz, Field field) throws Exception {
         if (String.class.isAssignableFrom(clazz)) {
             return ObjectHelper.TEST_STRING;
-        } else if (Integer.class.isAssignableFrom(clazz) || int.class.isAssignableFrom(clazz) || Long.class.isAssignableFrom(clazz) || long.class.isAssignableFrom(clazz)) {
+        } else if (Integer.class.isAssignableFrom(clazz) || int.class.isAssignableFrom(clazz)) {
             return ObjectHelper.TEST_INT;
-        } else if (Float.class.isAssignableFrom(clazz) || float.class.isAssignableFrom(clazz) || Double.class.isAssignableFrom(clazz) || double.class.isAssignableFrom(clazz)) {
+        } else if (Long.class.isAssignableFrom(clazz) || long.class.isAssignableFrom(clazz)) {
+            return ObjectHelper.TEST_LONG;
+        } else if (Float.class.isAssignableFrom(clazz) || float.class.isAssignableFrom(clazz)) {
             return ObjectHelper.TEST_FLOAT;
+        } else if (Double.class.isAssignableFrom(clazz) || double.class.isAssignableFrom(clazz)) {
+            return ObjectHelper.TEST_DOUBLE;
         } else if (Boolean.class.isAssignableFrom(clazz) || boolean.class.isAssignableFrom(clazz)) {
             return ObjectHelper.TEST_BOOL;
         } else if (Character.class.isAssignableFrom(clazz) || char.class.isAssignableFrom(clazz)) {
