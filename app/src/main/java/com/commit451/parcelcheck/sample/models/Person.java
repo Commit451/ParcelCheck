@@ -10,6 +10,9 @@ public class Person implements Parcelable {
 
     private String name;
     private double age;
+    private float size;
+    private long friends;
+    private boolean isCool;
     private Person bestFriend;
 
     public Person() {
@@ -24,12 +27,18 @@ public class Person implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.name);
         dest.writeDouble(this.age);
+        dest.writeFloat(this.size);
+        dest.writeLong(this.friends);
+        dest.writeByte(this.isCool ? (byte) 0 : (byte) 1);
         dest.writeParcelable(this.bestFriend, flags);
     }
 
     protected Person(Parcel in) {
         this.name = in.readString();
         this.age = in.readDouble();
+        this.size = in.readFloat();
+        this.friends = in.readLong();
+        this.isCool = in.readByte() != 0;
         this.bestFriend = in.readParcelable(Person.class.getClassLoader());
     }
 
